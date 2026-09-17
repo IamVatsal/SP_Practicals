@@ -1,16 +1,16 @@
-const mysql = require("mysql2");
+const mysql = require('mysql2');
 
 const con = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "root",
-    database: "Node_test"
+    host: 'localhost',
+    user: 'root',
+    password: 'root',
+    database: 'Node_test',
 });
 
 con.connect((err) => {
     if (err) throw err;
 
-    console.log("Connected to Node_test database!");
+    console.log('Connected to Node_test database!');
 
     const sql = `
         CREATE TABLE IF NOT EXISTS Product (
@@ -25,7 +25,7 @@ con.connect((err) => {
     con.query(sql, (err) => {
         if (err) throw err;
 
-        console.log("Product table created successfully.");
+        console.log('Product table created successfully.');
         con.end();
     });
 });

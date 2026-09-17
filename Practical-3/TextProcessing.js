@@ -13,5 +13,5 @@ function countCharacters(text) {
 module.exports = {
     countWords,
     countLines,
-    countCharacters
+    countCharacters,
 };

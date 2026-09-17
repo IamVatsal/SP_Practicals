@@ -1,23 +1,21 @@
-const http = require("http");
-const mysql = require("mysql2");
-const { URL } = require("url");
+const http = require('http');
+const mysql = require('mysql2');
+const { URL } = require('url');
 
 const con = mysql.createConnection({
-    host: "localhost",
-    user: "root",
-    password: "root",
-    database: "Node_test"
+    host: 'localhost',
+    user: 'root',
+    password: 'root',
+    database: 'Node_test',
 });
 
 const server = http.createServer((req, res) => {
-
     const url = new URL(req.url, `http://${req.headers.host}`);
 
     // Display form
-    if (url.pathname === "/") {
-
+    if (url.pathname === '/') {
         res.writeHead(200, {
-            "Content-Type": "text/html"
+            'Content-Type': 'text/html',
         });
 
         res.end(`
@@ -35,22 +33,20 @@ const server = http.createServer((req, res) => {
     }
 
     // Delete product
-    else if (url.pathname === "/delete") {
+    else if (url.pathname === '/delete') {
+        const id = url.searchParams.get('id');
 
-        const id = url.searchParams.get("id");
-
-        const sql = "DELETE FROM Product WHERE Id = ?";
+        const sql = 'DELETE FROM Product WHERE Id = ?';
 
         con.query(sql, [id], (err, result) => {
-
             if (err) {
                 res.writeHead(500);
-                res.end("Database Error");
+                res.end('Database Error');
                 return;
             }
 
             res.writeHead(200, {
-                "Content-Type": "text/html"
+                'Content-Type': 'text/html',
             });
 
             res.end(`
@@ -61,14 +57,12 @@ const server = http.createServer((req, res) => {
                 <a href="/">Go Back</a>
             `);
         });
-    }
-
-    else {
+    } else {
         res.writeHead(404);
-        res.end("404 - Page Not Found");
+        res.end('404 - Page Not Found');
     }
 });
 
 server.listen(3000, () => {
-    console.log("Server running at http://localhost:3000");
+    console.log('Server running at http://localhost:3000');
 });
