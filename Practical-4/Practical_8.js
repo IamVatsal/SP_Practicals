@@ -4,8 +4,8 @@ const { URL } = require('url');
 
 const con = mysql.createConnection({
     host: 'localhost',
-    user: 'root',
-    password: 'root',
+    user: 'vatsal',
+    password: 'vatsal',
     database: 'Node_test',
 });
 
